@@ -1,4 +1,6 @@
-package com.wy.game.service;
+package com.wy.game.card;
+
+import com.wy.game.card.poker.Poker;
 
 /**
  * 卡片
@@ -6,7 +8,7 @@ package com.wy.game.service;
  * @version V1.0
  * @date 2020/6/30 8:03 下午
  */
-public interface Card<T> extends Comparable<T>{
+public interface Card<T extends Card<T>> extends Comparable<T> {
     /**
      * 获取卡片信息
      * @return

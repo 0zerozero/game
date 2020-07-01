@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @version V1.0
  * @date 2020/6/30 7:56 下午
  */
-@Rollback(false)
-@Transactional
+//@Rollback(false)
+//@Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)

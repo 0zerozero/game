@@ -1,9 +1,11 @@
-package com.wy.game.service.impl;
+package com.wy.game.deck;
 
-import com.wy.game.bean.Poker;
-import com.wy.game.service.AbstractPokerDeck;
+import com.wy.game.card.Card;
+import com.wy.game.card.poker.Poker;
+import com.wy.game.ruler.Score;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,9 +19,9 @@ public class BlackJackGame extends AbstractPokerDeck {
     private static final int BAST_POINT = 21;
 
     @Override
-    public int win(List<Poker> a, List<Poker> b) {
-        Integer mySum = a.stream().map(Poker::getPoint).reduce(0, Integer::sum);
-        Integer youSum = b.stream().map(Poker::getPoint).reduce(0, Integer::sum);
+    public int result(Score a, Score b) {
+        int mySum = a.score();
+        int youSum = b.score();
         if (youSum - mySum == 0 ){
             return 0;
         }else {
@@ -28,10 +30,20 @@ public class BlackJackGame extends AbstractPokerDeck {
             }else if(mySum == BAST_POINT){
                 return 1;
             }else if (youSum < BAST_POINT && mySum <BAST_POINT){
-                return mySum-youSum;
+                return mySum - youSum;
             }else {
                 return youSum - mySum;
             }
         }
+    }
+
+    @Override
+    public Card<Poker> draw(Object obj) {
+        List<Card<Poker>> cards = visibleCardListMap.getOrDefault(obj, Collections.emptyList());
+        Card<Poker> card = deck.pop();
+        if (!cards.isEmpty()){
+            cards.add(card);
+        }
+        return card;
     }
 }

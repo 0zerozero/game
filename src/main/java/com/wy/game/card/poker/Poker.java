@@ -1,7 +1,5 @@
-package com.wy.game.bean;
-
-import com.wy.game.enums.Suit;
-import com.wy.game.service.Card;
+package com.wy.game.card.poker;
+import com.wy.game.card.Card;
 import lombok.*;
 
 /**
@@ -12,7 +10,6 @@ import lombok.*;
  */
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 public class Poker implements Card<Poker> {
     /**
@@ -28,7 +25,7 @@ public class Poker implements Card<Poker> {
     /**
      * 花色
      */
-    private Suit suit;
+    private SuitEnum suit;
     /**
      * 点数
      */
